@@ -86,7 +86,7 @@ export default function Sidebar({children}) {
               <i>
                 <GoPerson className="w-7 h-7 text-primary" />
               </i>
-              <Link to={"/"} className=" ms-4  font-semibold normal-case text-2xl tracking-wider text-primary">
+              <Link to={"/"} className=" ms-4  font-semibold normal-case text-2xl tracking-wider text-primary max-[574px]:hidden">
                 Contact
               </Link>
             </div>
