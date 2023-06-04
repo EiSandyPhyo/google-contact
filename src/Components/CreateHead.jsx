@@ -13,7 +13,7 @@ const CreateHead = () => {
             className="file-input file-input-bordered file-input-info w-full max-w-xs"
             id="file"
           />
-          <label htmlFor="file" className=" myLabel bg-primary cursor-pointer">
+          <label htmlFor="file" className=" myLabel bg-primary text-white cursor-pointer">
             <BiImageAdd />
           </label>
           <button className=" w-[90px] h-[50px] px-3 border-2 border-zinc-300 rounded-2xl inline-block">
@@ -26,9 +26,10 @@ const CreateHead = () => {
         <div className=" relative">
           <button
             onClick={() => toast.success("New contact create successfully.")}
-            className=" absolute top-[-310px] right-[-45px] md:relative md:top-0 md:right-0 w-[100px] h-[50px] py-3 px-5 bg-primary text-white "
+            className=" absolute top-[-310px] right-[-45px] md:relative md:top-0 md:right-0 w-[100px] h-[50px] py-3 px-5 bg-primary text-white border-4 border-[#047AFF] btn btn-primary"
           >
-            Save
+            
+            <span className=" font-semibold">Save</span>
           </button>
         </div>
       </div>

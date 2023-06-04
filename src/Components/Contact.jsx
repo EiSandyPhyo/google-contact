@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HiPrinter } from "react-icons/hi2";
 import { CiImport, CiExport, CiMenuKebab } from "react-icons/ci";
-import { MdOutlineMenuOpen } from "react-icons/md";
+import { MdOutlineMenuOpen, MdOutlineInfo, MdCake } from "react-icons/md";
 import GetContacts from "../Pages/GetContacts";
 import Sidebar from "./Sidebar";
 
@@ -47,8 +47,8 @@ const Contact = () => {
   console.log("menuOpen - " + menuOpen);
   return (
     <Sidebar>
-      <div>
-        <div className="">
+      <div className=" flex">
+        <div className=" w-6/7">
           <table className={menuOpen ? "table w-2/3" : "table w-full"}>
             {/* head */}
             <thead>
@@ -120,11 +120,11 @@ const Contact = () => {
             </tbody>
           </table>
         </div>
-        <div className=" h-14 space-x-5 relative max-[574px]:hidden max-[1003px]:hidden lg:hidden 2xl:block">
+        <div className="w-1/7 h-14 relative max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block">
           <div
             className={
               menuOpen
-                ? "absolute w-16 top-[0.9rem] right-[380px] inline-block"
+                ? "absolute w-16 top-[0.9rem] right-[400px] inline-block"
                 : "absolute w-16 top-[0.9rem] right-0"
             }
           >
@@ -142,7 +142,7 @@ const Contact = () => {
                 />
               </button>
             </div>
-            <div className=" w-96 absolute top-0 left-[50px]">
+            <div className=" w-96 absolute top-[-0.9rem] left-[50px]">
               {menuOpen ? (
                 <div class="card w-96 bg-base-100 shadow-3xl">
                   <div class="card-body">
@@ -205,7 +205,7 @@ const Contact = () => {
               )}
             </div>
           </div>
-        </div>
+        </div>  
       </div>
       {contacts ? (
         <div className="flex flex-wrap justify-center mt-10">
