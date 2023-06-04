@@ -211,7 +211,7 @@ const Login = () => {
 
               <Link to={"/"}>
                 <button className="px-12 register rounded py-2 text-white bg-primary border-4 border-[#047AFF] hover:bg-white hover:text-primary mx-auto block mt-5 ">
-                  <span className=" font-semibold">Login</span>
+                  <span className=" font-semibold">Login Login</span>
                   
                 </button>
               </Link>
