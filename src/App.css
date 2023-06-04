@@ -8,7 +8,7 @@
  }
 
 .icon-input{
-  @apply flex items-center  shadow-sm gap-4 px-3 py-1 rounded
+  @apply flex items-center border w-72 shadow-sm gap-4 px-3 py-1 rounded
 }
   
 .register:hover{
