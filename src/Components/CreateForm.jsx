@@ -20,7 +20,7 @@ const CreateForm = () => {
           <input
             type="text"
             placeholder="First Name"
-            className={`input w-full max-w-xs border-primary hover:border-[#2c6f71] block mb-3`}
+            className={`input w-full max-w-xs border-primary hover:border-[#047AFF] block mb-3`}
           />
           <input
             type="text"
@@ -114,7 +114,7 @@ const CreateForm = () => {
 
       <button
         onClick={() => setShowM(!showM)}
-        className="flex justify-center items-start w-[120px] h-[50px] py-3 px-3 text-[#428284] mx-auto"
+        className="flex justify-center items-start w-[120px] h-[50px] py-3 px-3 text-[#047AFF] mx-auto"
       >
         {showM ? " Show less" : "Show more"}
       </button>

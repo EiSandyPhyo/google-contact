@@ -12,16 +12,10 @@
 }
   
 .register:hover{
-  background-color: #088085;
-  color: white;
   transition: 0.5s;
-  border: 0px;
 }
 .login:hover{
-  background-color: #e4008dd0;
-  color: white;
   transition: 0.5s;
-  border: 0px;
 }
 input[type="file"]{
   display: none;
