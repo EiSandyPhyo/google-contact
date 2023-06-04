@@ -71,28 +71,6 @@ export default function Sidebar({ children }) {
     setDrawerSm(!drawerSm);
   };
 
-          <div className="navbar ">
-            <div className="flex-1">
-              <i>
-                <GoPerson className="w-7 h-7 text-primary" />
-              </i>
-              <Link to={"/"} className=" ms-4  font-semibold normal-case text-2xl tracking-wider text-primary max-[574px]:hidden">
-                Contact
-              </Link>
-            </div>
-            <div className="flex-none gap-2 border-none">
-              <div className="icon-input">
-                <BiSearchAlt className="text-black" />
-                <input
-                  type="text"
-                  className="outline-none rounded p-2 text-black"
-                  placeholder="Search"
-                  //value={}
-                  //onChange={} //you should use debounce
-                />
-              </div>
-
-
   return (
     <Box sx={{ display: "flex" }}>
       <Navbar
