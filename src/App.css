@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Poppins:wght@300;400;500;700&display=swap');
+ *{
+  font-family: 'Montserrat', sans-serif;
+ }
+
+.icon-input{
+  @apply flex items-center  shadow-sm gap-4 px-3 py-1 rounded
+}
+  
+.register:hover{
+  background-color: #088085;
+  color: white;
+  transition: 0.5s;
+  border: 0px;
+}
+.login:hover{
+  background-color: #e4008dd0;
+  color: white;
+  transition: 0.5s;
+  border: 0px;
+}
+input[type="file"]{
+  display: none;
+}
+
+.myLabel{
+  width: 130px;
+  height: 130px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}
