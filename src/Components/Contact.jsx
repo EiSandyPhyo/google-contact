@@ -181,12 +181,12 @@ const Contact = () => {
                       {currentPages.map((contact) => {
                         return (
                           <>
-                            <div className="flex flex-wrap justify-between items-center hover:bg-[#0206176c] p-1 cursor-pointer">
+                            <div className="flex flex-wrap justify-between items-center hover:bg-[#F2F7FF] p-1 cursor-pointer">
                               <div className="flex flex-wrap gap-3  cursor-pointer">
                                 <div className="avatar">
                                   <div className="mask mask-squircle w-12 h-12">
                                     <img
-                                      src={`https://ui-avatars.com/api/?name=${contact.username[0]}&background=random&font-size=0.5`}
+                                      src={`https://ui-avatars.com/api/?name=${contact?.username[0]}&background=random&font-size=0.5`}
                                       alt="Avatar Tailwind CSS Component"
                                     />
                                   </div>
@@ -194,13 +194,13 @@ const Contact = () => {
                                 <div className="flex flex-col justify-center">
                                   <div className="font-semibold capitalize">
                                     <p className="text-sm">
-                                      {contact.name.firstname +
+                                      {contact?.firstName +
                                         " " +
-                                        contact.name.lastname}
+                                        contact?.lastName}
                                     </p>
                                   </div>
                                   <div className="">
-                                    <p className="text-xs">{contact.email}</p>
+                                    <p className="text-xs">{contact?.email}</p>
                                   </div>
                                 </div>
                               </div>
