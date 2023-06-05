@@ -12,6 +12,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@mantine/core": "^6.0.13",
+    "@mantine/hooks": "^6.0.13",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.3",
     "@mui/styled-engine-sc": "^5.12.0",
@@ -53,5 +55,4 @@
   },
   "homepage": "https://github.com/EiSandyPhyo/google-contact#readme",
   "description": ""
-  }
-
+}
