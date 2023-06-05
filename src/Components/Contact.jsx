@@ -6,29 +6,35 @@ import GetContacts from "../Pages/GetContacts";
 import Sidebar from "./Sidebar";
 import { useGetContactQuery } from "../api/contactApi";
 import { Loader } from "@mantine/core";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const Contact = () => {
   const { data, isLoading } = useGetContactQuery();
-  console.log(data);
-  console.log(data?.users);
-  // const contacts = data?.users;
-  // const [contacts, setContacts] = useState();
+  const [contacts, setContacts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
 
-  // const lastPage = currentPage * pageSize;
-  // const firstPage = lastPage - pageSize;
-  // const currentPages = data?.users.slice(firstPage, lastPage);
-  // const noOfPage = Math.ceil(data?.users.length / pageSize);
-  // console.log(noOfPage);
-  // const numbers = [...Array(noOfPage + 1).keys()].slice(1);
-  // console.log(numbers);
-  console.log(data?.users.length);
+  useEffect(() => {
+    if (data !== undefined && (data?.users).length !== 0) {
+      setContacts(data?.users);
+    }
+  });
 
-  const currentPageHandle = (id) => {
-    setCurrentPage(id);
-    // console.log(id);
+  const lastPage = currentPage * pageSize; // 10 = 1*10
+  const firstPage = lastPage - pageSize; // 0 = 10-10
+
+  const currentPages = contacts.slice(firstPage, lastPage); // =contacts[](0,10)
+  console.log(currentPages); //10
+  const noOfPage = Math.ceil(contacts.length / pageSize);
+  console.log(noOfPage); //30
+  const numbers = [...Array(noOfPage + 1).keys()].slice(1);
+  console.log(numbers);
+
+  const handleChangePage = (e, p) => {
+    setCurrentPage(p);
+    console.log(e, p);
   };
 
   useEffect(() => {
@@ -107,23 +113,26 @@ const Contact = () => {
             </thead>
             <div className="my-4">
               <p className=" uppercase text-xs text-[#91979b] ml-4 tracking-widest">
-                {data?.users.length === 1
-                  ? `contact (${data?.users.length})`
-                  : `contacts (${data?.users.length})`}
+                {contacts.length === 1
+                  ? `contact (${contacts.length})`
+                  : `contacts (${contacts.length})`}
               </p>
             </div>
-            <tbody>
-              {data?.users?.map((contact) => {
-                return (
-                  <GetContacts
-                    key={contact?.id}
-                    contact={contact}
-                    menuOpen={menuOpen}
-                    setMenuOpen={setMenuOpen}
-                  />
-                );
-              })}
-            </tbody>
+
+            {(data?.users).length !== 0 && (
+              <tbody>
+                {currentPages?.map((contact) => {
+                  return (
+                    <GetContacts
+                      key={contact?.id}
+                      contact={contact}
+                      menuOpen={menuOpen}
+                      setMenuOpen={setMenuOpen}
+                    />
+                  );
+                })}
+              </tbody>
+            )}
           </table>
         </div>
         <div className="w-1/7 h-14 relative max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block">
@@ -169,41 +178,41 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    {/* <div className=" flex flex-col gap-3 ">
-                    {currentPages.map((contact) => {
-                      return (
-                        <>
-                          <div className="flex flex-wrap justify-between items-center hover:bg-[#0206176c] p-1 cursor-pointer">
-                            <div className="flex flex-wrap gap-3  cursor-pointer">
-                              <div className="avatar">
-                                <div className="mask mask-squircle w-12 h-12">
-                                  <img
-                                    src={`https://ui-avatars.com/api/?name=${contact.username[0]}&background=random&font-size=0.5`}
-                                    alt="Avatar Tailwind CSS Component"
-                                  />
+                    <div className=" flex flex-col gap-3 ">
+                      {currentPages.map((contact) => {
+                        return (
+                          <>
+                            <div className="flex flex-wrap justify-between items-center hover:bg-[#0206176c] p-1 cursor-pointer">
+                              <div className="flex flex-wrap gap-3  cursor-pointer">
+                                <div className="avatar">
+                                  <div className="mask mask-squircle w-12 h-12">
+                                    <img
+                                      src={`https://ui-avatars.com/api/?name=${contact.username[0]}&background=random&font-size=0.5`}
+                                      alt="Avatar Tailwind CSS Component"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="flex flex-col justify-center">
+                                  <div className="font-semibold capitalize">
+                                    <p className="text-sm">
+                                      {contact.name.firstname +
+                                        " " +
+                                        contact.name.lastname}
+                                    </p>
+                                  </div>
+                                  <div className="">
+                                    <p className="text-xs">{contact.email}</p>
+                                  </div>
                                 </div>
                               </div>
-                              <div className="flex flex-col justify-center">
-                                <div className="font-semibold capitalize">
-                                  <p className="text-sm">
-                                    {contact?.firstName +
-                                      " " +
-                                      contact?.lastName}
-                                  </p>
-                                </div>
-                                <div className="">
-                                  <p className="text-xs">{contact.email}</p>
-                                </div>
+                              <div className="ml-auto">
+                                <MdCake />
                               </div>
                             </div>
-                            <div className="ml-auto">
-                              <MdCake />
-                            </div>
-                          </div>
-                        </>
-                      );
-                    })}
-                  </div> */}
+                          </>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -213,27 +222,15 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      {data?.users ? (
-        <div className="flex flex-wrap justify-center mt-10">
-          {/* <div className="join">
-          {numbers.map((no, i) => {
-            return (
-              <button
-                onClick={() => currentPageHandle(no)}
-                className={` btn join-item  btn-primary ${
-                  currentPage === no ? "btn-active" : ""
-                }`}
-                key={i}
-              >
-                {no}
-              </button>
-            );
-          })}
-        </div> */}
-        </div>
-      ) : (
-        <div className="loading">Loading...</div>
-      )}
+      <div className="flex flex-col justify-center items-center mt-10">
+        {numbers.length !== 0 && (
+          <Pagination
+            color="primary"
+            onChange={handleChangePage}
+            count={numbers.length}
+          />
+        )}
+      </div>
     </Sidebar>
   );
 };

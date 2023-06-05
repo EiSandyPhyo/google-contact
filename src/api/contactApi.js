@@ -7,10 +7,11 @@ export const contactApi = createApi({
     endpoints:  (builder) => ({
         getContact: builder.query({
             query: () => ({
-                url: "/users",
+                url: `/users`,
                 // headers: {authorization : `Bearer ${token}`}
+                
             }),
-            providesTags:["contact"]
+            providesTags:["contact"],
         })
     }),
 })
