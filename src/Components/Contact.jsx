@@ -4,36 +4,39 @@ import { CiImport, CiExport, CiMenuKebab } from "react-icons/ci";
 import { MdOutlineMenuOpen, MdOutlineInfo, MdCake } from "react-icons/md";
 import GetContacts from "../Pages/GetContacts";
 import Sidebar from "./Sidebar";
+import { useGetContactsQuery } from "../api/contactApi";
 
 const Contact = () => {
-  const [contacts, setContacts] = useState([]);
+  const {data,isLoading}=useGetContactsQuery();
+  console.log(data);
+  console.log(data?.users);
+  //const [contacts, setContacts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(4);
+  const [pageSize] = useState(10);
 
-  const lastPage = currentPage * pageSize;
-  const firstPage = lastPage - pageSize;
-  const currentPages = contacts.slice(firstPage, lastPage);
-  const noOfPage = Math.ceil(contacts.length / pageSize);
-  console.log(noOfPage);
-  const numbers = [...Array(noOfPage + 1).keys()].slice(1);
-  console.log(numbers);
+  // const lastPage = currentPage * pageSize;
+  // const firstPage = lastPage - pageSize;
+  // const currentPages = data?.users.slice(firstPage, lastPage);
+  // const noOfPage = Math.ceil(data?.users.length / pageSize);
+  // console.log(noOfPage);
+  // const numbers = [...Array(noOfPage + 1).keys()].slice(1);
+  // console.log(numbers);
+  console.log(data?.users.length);
 
   const currentPageHandle = (id) => {
     setCurrentPage(id);
     // console.log(id);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+ 
 
-  const fetchData = async () => {
-    const api = await fetch(`https://fakestoreapi.com/users`);
-    const data = await api.json();
-    setContacts(data);
-    // console.log(data);
-  };
+  // const fetchData = async () => {
+  //   const api = await fetch(`https://fakestoreapi.com/users`);
+  //   const data = await api.json();
+  //   setContacts(data);
+  //   // console.log(data);
+  // };
   useEffect(() => {
     const handleWindowResize = () => {
       setMenuOpen(false);
@@ -101,13 +104,13 @@ const Contact = () => {
             </thead>
             <div className="my-4">
               <p className=" uppercase text-xs text-[#91979b] ml-4 tracking-widest">
-                {contacts.length === 1
-                  ? `contact (${contacts.length})`
-                  : `contacts (${contacts.length})`}
+                {data?.user?.length === 1
+                  ? `contact (${data?.uses.length})`
+                  : `contacts (${data?.users.length})`}
               </p>
             </div>
             <tbody>
-              {currentPages.map((contact) => {
+              {data?.users.map((contact) => {
                 return (
                   <GetContacts
                     key={contact?.id}
@@ -164,7 +167,7 @@ const Contact = () => {
                     </div>
 
                     <div className=" flex flex-col gap-3 ">
-                      {currentPages.map((contact) => {
+                      {/* {currentPages.map((contact) => {
                         return (
                           <>
                             <div className="flex flex-wrap justify-between items-center hover:bg-[#0206176c] p-1 cursor-pointer">
@@ -196,7 +199,7 @@ const Contact = () => {
                             </div>
                           </>
                         );
-                      })}
+                      })} */}
                     </div>
                   </div>
                 </div>
@@ -207,10 +210,10 @@ const Contact = () => {
           </div>
         </div>  
       </div>
-      {contacts ? (
+      {data?.users ? (
         <div className="flex flex-wrap justify-center mt-10">
           <div className="join">
-            {numbers.map((no, i) => {
+            {/* {numbers.map((no, i) => {
               return (
                 <button
                   onClick={() => currentPageHandle(no)}
@@ -222,7 +225,7 @@ const Contact = () => {
                   {no}
                 </button>
               );
-            })}
+            })} */}
           </div>
         </div>
       ) : (

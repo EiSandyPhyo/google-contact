@@ -7,14 +7,14 @@ import { LuFolderDown } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
-const GetContacts = ({contact}) => {
-    let address =
-    contact?.address?.city +
-    " " +
-    contact?.address?.number +
-    " " +
-    contact?.address?.street;
-  //console.log(contact.address.city + " " + contact.address.street);
+const GetContacts = ({contact,menuOpen}) => {
+  //   let address =
+  //   contact?.address?.city +
+  //   " " +
+  //   contact?.address?.number +
+  //   " " +
+  //   contact?.address?.street;
+  // //console.log(contact.address.city + " " + contact.address.street);
   return (
     <>
       
@@ -24,7 +24,7 @@ const GetContacts = ({contact}) => {
           <div className="avatar group-hover:invisible">
             <div className="mask mask-squircle w-12 h-12">
               <img
-                src={`https://ui-avatars.com/api/?name=${contact?.username[0]}&background=random&font-size=0.5`}
+                src={contact?.image}
                 alt="Avatar Tailwind CSS Component"
               />
             </div>
@@ -38,7 +38,7 @@ const GetContacts = ({contact}) => {
           <div>
             <Link to={`/detail/${contact?.id}`} state={contact} >
             <div className="font-semibold capitalize w-1/5 max-[1003px]:w-1/3">
-              {contact?.name?.firstname+" "+contact?.name?.lastname}
+              {contact?.firstName+" "+contact?.lastName}
             </div>
             </Link>
           </div>
@@ -51,7 +51,7 @@ const GetContacts = ({contact}) => {
         {contact?.phone}
       </td>
       <td className="w-1/5 max-[574px]:hidden max-[1003px]:hidden">
-        {address}
+        {contact?.address?.address+" "+contact?.address?.city}
       </td>
       {/* single hover */}
       <td className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">

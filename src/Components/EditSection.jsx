@@ -10,12 +10,14 @@ import { FaBirthdayCake } from "react-icons/fa";
 import { BiNote } from "react-icons/bi";
 
 const EditSection = ({contactDetail}) => {
-    const [firstname,setFirstName]=useState(contactDetail?.name?.firstname);
-    const [lastname,setlastName]=useState(contactDetail?.name?.lastname);
+    const [firstname,setFirstName]=useState(contactDetail?.firstName);
+    const [lastname,setlastName]=useState(contactDetail?.lastName);
     const [email,setemail]=useState(contactDetail?.email);
-    const [address,setAddress]=useState(contactDetail?.address?.city);
+    const [address,setAddress]=useState(contactDetail?.address);
     const [phone,setPhone]=useState(contactDetail?.phone);
     const [showM, setShowM] = useState(false);
+    const [birthday,setBirthday]=useState(contactDetail?.birthDate);
+    const [company,setCompany]=useState(contactDetail?.company)
   return (
   <>
   <div className="container">
@@ -26,13 +28,13 @@ const EditSection = ({contactDetail}) => {
         </div>
         <div className="md:w-[700px]">
           <input
-            value={contactDetail?.name?.firstname}
+            value={firstname}
             type="text"
             placeholder="First Name"
             className={`input w-full max-w-xs border-primary hover:border-[#2c6f71] block mb-3`}
           />
           <input
-          value={contactDetail?.name?.lastname}
+          value={lastname}
             type="text"
             placeholder="Last Name"
             className="input w-full max-w-xs border-primary block mb-3 "
@@ -45,11 +47,13 @@ const EditSection = ({contactDetail}) => {
         </div>
         <div className="md:w-[700px]">
           <input
+            value={company?.name}
             type="text"
             placeholder="Company"
             className="input w-full max-w-xs border-primary block mb-3"
           />
           <input
+          value={company?.title}
             type="text"
             placeholder="Job Title"
             className="input w-full max-w-xs border-primary block mb-3"
@@ -62,7 +66,7 @@ const EditSection = ({contactDetail}) => {
         </div>
         <div className="md:w-[700px]">
           <input
-          value={contactDetail?.email}
+          value={email}
             type="email"
             placeholder="Email"
             className="input w-full max-w-xs border-primary block mb-3"
@@ -76,7 +80,7 @@ const EditSection = ({contactDetail}) => {
         </div>
         <div className="md:w-[700px]">
           <input
-          value={contactDetail?.phone}
+          value={phone}
             type="text"
             placeholder="Phone"
             className="input w-full max-w-xs border-primary block mb-3"
@@ -91,7 +95,7 @@ const EditSection = ({contactDetail}) => {
           </div>
           <div className="md:w-[700px]">
             <input
-             value={contactDetail?.address?.city+" "+contactDetail?.address?.street}
+             value={address?.address+" "+address?.city}
               type="text"
               placeholder="Address"
               className="input w-full max-w-xs border-primary block mb-3"
@@ -105,6 +109,7 @@ const EditSection = ({contactDetail}) => {
           </div>
           <div className="md:w-[700px]">
             <input
+              value={birthday}
               type="text"
               placeholder="Birthday"
               className="input w-full max-w-xs border-primary block mb-3"

@@ -30,3 +30,8 @@ input[type="file"]{
   align-items: center;
   font-size: 50px;
 }
+
+.backbtn{
+  align-self: baseline;
+  
+}
