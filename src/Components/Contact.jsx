@@ -4,10 +4,9 @@ import { CiImport, CiExport, CiMenuKebab } from "react-icons/ci";
 import { MdOutlineMenuOpen, MdOutlineInfo, MdCake } from "react-icons/md";
 import GetContacts from "../Pages/GetContacts";
 import Sidebar from "./Sidebar";
-import { useGetContactQuery } from "../api/contactApi";
+import { useGetContactQuery } from "../redux/api/contactApi";
 import { Loader } from "@mantine/core";
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 
 const Contact = () => {
   const { data, isLoading } = useGetContactQuery();

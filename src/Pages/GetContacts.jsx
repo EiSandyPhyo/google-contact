@@ -1,5 +1,4 @@
 import React from 'react'
-import Sidebar from '../Components/Sidebar'
 import { HiPrinter } from "react-icons/hi2";
 import { CiExport, CiMenuKebab } from "react-icons/ci";
 import { MdStarOutline, MdOutlineEdit } from "react-icons/md";
@@ -8,11 +7,9 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
 const GetContacts = ({contact, menuOpen}) => {
-    let address =
-    // contact?.address?.city +
-    // " " +
-    contact?.address?.address;
+    let address = contact?.address?.address;
   //console.log(contact.address.city + " " + contact.address.street);
+  
   return (
     <>
       
