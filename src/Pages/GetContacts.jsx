@@ -7,13 +7,11 @@ import { LuFolderDown } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
-const GetContacts = ({contact}) => {
+const GetContacts = ({contact, menuOpen}) => {
     let address =
-    contact?.address?.city +
-    " " +
-    contact?.address?.number +
-    " " +
-    contact?.address?.street;
+    // contact?.address?.city +
+    // " " +
+    contact?.address?.address;
   //console.log(contact.address.city + " " + contact.address.street);
   return (
     <>
@@ -38,7 +36,7 @@ const GetContacts = ({contact}) => {
           <div>
             <Link to={`/detail/${contact?.id}`} state={contact} >
             <div className="font-semibold capitalize w-1/5 max-[1003px]:w-1/3">
-              {contact?.name?.firstname+" "+contact?.name?.lastname}
+              {contact?.firstName+" "+contact?.lastName}
             </div>
             </Link>
           </div>
@@ -50,8 +48,12 @@ const GetContacts = ({contact}) => {
       <td className="w-1/5 max-[574px]:hidden max-[1003px]:hidden">
         {contact?.phone}
       </td>
-      <td className="w-1/5 max-[574px]:hidden max-[1003px]:hidden">
-        {address}
+      <td className={
+                    menuOpen
+                      ? "hidden"
+                      : "w-1/5 max-[574px]:hidden max-[1003px]:hidden"
+                  }>
+        {/* {address} */} {contact?.company?.title + " , " + contact?.company.name}
       </td>
       {/* single hover */}
       <td className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">

@@ -9,7 +9,7 @@ const Contact = () => {
   const [contacts, setContacts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(4);
+  const [pageSize] = useState(10);
 
   const lastPage = currentPage * pageSize;
   const firstPage = lastPage - pageSize;
@@ -29,10 +29,10 @@ const Contact = () => {
   }, []);
 
   const fetchData = async () => {
-    const api = await fetch(`https://fakestoreapi.com/users`);
-    const data = await api.json();
-    setContacts(data);
-    // console.log(data);
+    const api = await fetch(`https://dummyjson.com/users`);
+    const {users} = await api.json();
+    setContacts(users);
+    console.log(users);
   };
   useEffect(() => {
     const handleWindowResize = () => {
@@ -67,7 +67,7 @@ const Contact = () => {
                       : "capitalize w-1/5 max-[574px]:hidden max-[1003px]:hidden"
                   }
                 >
-                  address
+                  {/* address */} Job title & company
                 </th>
                 <th className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">
                   <div className="flex items-center space-x-5 justify-end">
@@ -180,9 +180,9 @@ const Contact = () => {
                                 <div className="flex flex-col justify-center">
                                   <div className="font-semibold capitalize">
                                     <p className="text-sm">
-                                      {contact.name.firstname +
+                                      {contact?.firstName +
                                         " " +
-                                        contact.name.lastname}
+                                        contact?.lastName}
                                     </p>
                                   </div>
                                   <div className="">
