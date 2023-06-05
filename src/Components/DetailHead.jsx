@@ -21,12 +21,12 @@ const DetailHead = ({ contactDetail }) => {
       <div className=" border-b-4 p-10 md:flex justify-between items-end mx-5 mb-10 h-[460px] md:h-[250px]">
         <div className=" flex flex-col md:flex-row justify-start items-center gap-10 mt-16">
           <span className="myLabel text-6xl text-white font-bold bg-primary capitalize ">
-            {contactDetail?.name?.firstname[0]}
+            {contactDetail?.firstName[0]}
           </span>
           <p className=" capitalize text-3xl font-semibold">
-            {contactDetail?.name?.firstname +
+            {contactDetail?.firstName +
               " " +
-              contactDetail?.name?.lastname}
+              contactDetail?.lastName}
           </p>
           <Link to={`/edit/${contactDetail?.id}`} state={contactDetail}>
 
