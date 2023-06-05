@@ -35,13 +35,13 @@ const CreateHead = () => {
       </div>
 
       <Toaster
-        position="bottom-center"
+        position="bottom-right"
         toastOptions={{
           className: "",
           duration: 5000,
           style: {
-            background: "#fff",
-            color: "#1f3738",
+            background: "#1f3738",
+            color: "#fff",
           },
 
           // Default options for specific types

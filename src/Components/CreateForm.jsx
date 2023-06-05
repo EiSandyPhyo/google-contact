@@ -9,6 +9,23 @@ import { BiNote } from "react-icons/bi";
 
 const CreateForm = () => {
   const [showM, setShowM] = useState(false);
+  const [firstname, setFirstName] = useState("");
+
+  const saveHandler = async (e) => {
+    try {
+      e.preventDefault();
+      const user = { name, email, password, password_confirmation };
+      const {data} = await register(user);
+      console.log(data);
+      if(data?.success){
+
+        nav('/login');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
    <div className="container">
      <div className=" md:mb-20 md:mt-[280px] mx-2 md:mx-20">
@@ -18,6 +35,8 @@ const CreateForm = () => {
         </div>
         <div className="md:w-[700px]">
           <input
+          value={firstname}
+          onChange={(e) => setFirstName(e.target.value)}
             type="text"
             placeholder="First Name"
             className={`input w-full max-w-xs border-primary hover:border-[#047AFF] block mb-3`}
@@ -80,7 +99,12 @@ const CreateForm = () => {
           <div className="md:w-[700px]">
             <input
               type="text"
-              placeholder="Address"
+              placeholder="Street Address"
+              className="input w-full max-w-xs border-primary block mb-3"
+            />
+            <input
+              type="text"
+              placeholder="City"
               className="input w-full max-w-xs border-primary block mb-3"
             />
           </div>

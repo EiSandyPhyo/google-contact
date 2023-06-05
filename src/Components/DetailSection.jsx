@@ -7,31 +7,25 @@ import { Link } from "react-router-dom";
 import {AiOutlineArrowLeft} from "react-icons/ai"
 
 
-const DetailSection = () => {
+const DetailSection = ({ contactDetail }) => {
   return (
     <>
-      <div className="flex flex-col justify-start md:flex-row gap-10 md:justify-around md:items-start items-center md:mx-14">
+      <div className="flex flex-col justify-start md:flex-row gap-10 md:justify-around md:items-start items-center md:mx-14 mb-5">
         <div className=" md:basis-1/2 w-4/5 border-2 p-4">
           <p className=" font-semibold mb-2">Contact details</p>
           <p className="flex justify-start items-center gap-3 mb-2">
             <BsTelephone />
-            <Link>
-              <span className=" text-blue-600 cursor-pointer">Add Phone</span>
-            </Link>{" "}
+              <span className=" text-blue-600 cursor-pointer">{contactDetail?.phone}</span>
           </p>
           <p className="flex justify-start items-center gap-3 mb-2">
             <MdOutlineMail />
-            <Link>
-              <span className=" text-blue-600 cursor-pointer">Add Email</span>
-            </Link>
+              <span className=" text-blue-600 cursor-pointer">{contactDetail?.email}</span>
           </p>
           <p className="flex justify-start items-center gap-3 mb-2">
             <FaBirthdayCake />
-            <Link>
               <span className=" text-blue-600 cursor-pointer">
                 Add Birthday
               </span>
-            </Link>
           </p>
         </div>
         <div className=" md:basis-1/2 ">
@@ -44,7 +38,7 @@ const DetailSection = () => {
           <p className=" mb-2">Last edited • Yesterday, 9:02 PM</p>
           <p>Added to contacts • Yesterday, 9:02 PM</p>
           <Link to={"/"}>
-            <button className="w-[150px] h-[45px] mt-5 py-2 px-5 bg-primary text-white border-4 border-[#047AFF] btn btn-primary mySave flex justify-center items-start gap-2">
+            <button className="w-[150px] h-[45px] mt-5 py-2 px-5 bg-primary text-white border-4 border-[#047AFF] btn btn-primary mySave flex justify-center items-center gap-2">
               <AiOutlineArrowLeft className="  text-[22px]"/>
               <span className=" font-semibold">Go Back</span>
             </button>
