@@ -20,12 +20,12 @@ const DetailHead = ({ contactDetail }) => {
       <div className=" border-b-4 p-10 md:flex justify-between items-end mx-5 mb-10 h-[380px] md:h-[250px]">
         <div className=" flex flex-col md:flex-row justify-start items-center gap-10 mt-16">
           <span className="myLabel text-6xl text-white font-bold bg-primary capitalize ">
-            {contactDetail?.name?.firstname[0]}
+            {contactDetail?.firstName[0]}
           </span>
           <p className=" capitalize text-3xl font-semibold">
-            {contactDetail?.name?.firstname +
+            {contactDetail?.firstName +
               " " +
-              contactDetail?.name?.lastname}
+              contactDetail?.lastName}
           </p>
           <button className="w-[120px] h-[50px] md:w-[30px] md:h-[30px] p-2 border-2 border-zinc-300 rounded-full inline-block md:hidden ">
             <span className=" flex justify-center items-center text-2xl font-bold">

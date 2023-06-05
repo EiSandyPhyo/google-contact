@@ -7,9 +7,7 @@
   font-family: 'Montserrat', sans-serif;
  }
 
-.icon-input{
-  @apply flex items-center border w-72 shadow-sm gap-4 px-3 py-1 rounded
-}
+
   
 .register:hover{
   transition: 0.5s;
@@ -29,9 +27,4 @@ input[type="file"]{
   justify-content: center;
   align-items: center;
   font-size: 50px;
-}
-
-.backbtn{
-  align-self: baseline;
-  
 }

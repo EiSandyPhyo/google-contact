@@ -1,31 +1,39 @@
+import React, { useState } from "react";
+import { FiMenu } from "react-icons/fi";
+import { BiSearchAlt } from "react-icons/bi";
+import { GoPerson } from "react-icons/go";
+import { Link } from "react-router-dom";
+import { HiMenu } from "react-icons/hi";
 
-import React, { useState } from 'react'
-import { FiMenu } from 'react-icons/fi'
-import { BiSearchAlt } from 'react-icons/bi'
-import { GoPerson } from 'react-icons/go'
-import { Link } from 'react-router-dom'
-import {HiMenu} from "react-icons/hi"
+const Navbar = ({
+  AppBar,
+  open,
+  handleDrawerClose,
+  handleDrawerOpen,
+  toggleDrawer,
+}) => {
+  const [showInput, setShowInput] = useState(false);
 
-const Navbar = ({AppBar,open,handleDrawerClose,handleDrawerOpen,toggleDrawer}) => {
-  const [showInput,setShowInput]=useState(false);
-  
   return (
     <div>
       <AppBar position="fixed" open={open}>
         <div className=" navbar fixed bg-base-100 shadow-none ">
-          <label  tabIndex={0} className="hidden lg:block btn btn-ghost btn-circle avatar">
+          <label
+            tabIndex={0}
+            className="hidden lg:block btn btn-ghost btn-circle avatar"
+          >
             <button onClick={open ? handleDrawerClose : handleDrawerOpen}>
               <FiMenu className=" mt-3 w-5 h-5 text-primary" />
             </button>
-            
           </label>
-          <label tabIndex={0} className="lg:hidden btn btn-ghost btn-circle avatar">
-          <button  onClick={toggleDrawer} >
+          <label
+            tabIndex={0}
+            className="lg:hidden btn btn-ghost btn-circle avatar"
+          >
+            <button onClick={toggleDrawer}>
               <HiMenu className="mx-5 w-5 h-5 text-primary" />
             </button>
-            
           </label>
-          
 
           <div className="navbar ">
             <div className="flex-1">
@@ -39,19 +47,20 @@ const Navbar = ({AppBar,open,handleDrawerClose,handleDrawerOpen,toggleDrawer}) =
                 Contact
               </Link>
             </div>
+            <div className=" hidden lg:flex w-96 items-center border shadow-sm gap-1 px-2 py-1 rounded ">
+              <BiSearchAlt className="text-black w-6 h-6" />
+              <input
+                type="text"
+                className="  outline-none rounded p-2 text-black"
+                placeholder="Search"
+                //value={}
+                //onChange={} //you should use debounce
+              />
+            </div>
+            <button className=" lg:hidden mx-9">
+            <BiSearchAlt className="text-black w-6 h-6" />
+            </button>
             <div className="flex-none gap-2 border-none">
-              <div className="icon-input">
-                <BiSearchAlt  className="text-black w-6 h-6" />
-                <input
-                
-                  type="text"
-                  className="  outline-none rounded p-2 text-black"
-                  placeholder="Search"
-                  //value={}
-                  //onChange={} //you should use debounce
-                />
-              </div>
-
               <div className="dropdown dropdown-end ">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
@@ -81,7 +90,7 @@ const Navbar = ({AppBar,open,handleDrawerClose,handleDrawerOpen,toggleDrawer}) =
         </div>
       </AppBar>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

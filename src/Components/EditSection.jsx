@@ -21,7 +21,7 @@ const EditSection = ({contactDetail}) => {
   return (
   <>
   <div className="container">
-     <div className=" md:mb-20 md:mt-[280px] mx-2 md:mx-20">
+     <div className=" my-9 mx-2 md:mx-20">
       <div className=" flex justify-center items-start gap-3">
         <div className=" p-5 text-xl">
           <FaUserAlt />
