@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useGetContactQuery } from "../redux/api/contactApi";
 import { BiSearchAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import {RxCross2} from "react-icons/rx"
 
 const Search = () => {
   const [showInput, setShowInput] = useState(false);
@@ -50,7 +51,9 @@ const Search = () => {
             {filterData?.length===0 ?(
                 <BiSearchAlt className=" text-black w-6 h-6" />
             ):(
-                <p className=" text-black" onClick={clearInput}>8</p>
+                <p className=" text-black" onClick={clearInput}>
+                    <RxCross2/>
+                </p>
             )
         }
         </div>
@@ -77,7 +80,7 @@ const Search = () => {
 
 
 
-      <div className="">
+      <div className=" lg:hidden">
         <input
           type="text"
           value={search}
@@ -89,7 +92,7 @@ const Search = () => {
           }
           placeholder="search"
         />
-        <div className="">
+        <div className=" lg:none">
             {filterData?.length===0 ?(
                 <button
                 onClick={() => setShowInput(!showInput)}
@@ -98,12 +101,14 @@ const Search = () => {
                 <BiSearchAlt className="  text-black w-6 h-5" />
               </button>
             ):(
-                <p className=" text-black" onClick={clearInput}>8</p>
+                <p className=" text-black lg:hidden ps-1" onClick={clearInput}>
+                    <RxCross2/>
+                </p>
             )
         }
         </div>
         {filterData.length!=0 &&(
-        <div className=" absolute top-14 shadow-lg bg-white w-40">
+        <div className=" absolute top-14 shadow-lg bg-white w-40 lg:hidden ">
             {filterData.slice(0,10).map((value,key)=>{
                 return(
                     <Link to={`/search/${value?.id}`  } state={value} className="dataItem py-2" onClick={console.log(value)} >
