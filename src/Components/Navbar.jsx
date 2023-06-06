@@ -72,7 +72,7 @@ const token=Cookies.get("token");
               </Link>
             </div>
             <div className=" hidden lg:flex w-96 items-center border shadow-sm gap-1 px-2 py-1 rounded ">
-              <BiSearchAlt className="text-black w-6 h-6" />
+              <BiSearchAlt className= " text-black w-6 h-6" />
               <input
                 type="text"
                 className="  outline-none rounded p-2 text-black"
@@ -82,19 +82,10 @@ const token=Cookies.get("token");
               />
             </div>
             <button className=" lg:hidden mx-9">
-            <BiSearchAlt className="text-black w-6 h-6" />
+            <BiSearchAlt className=" hidden text-black w-6 h-6" />
             </button>
             <div className="flex-none gap-2 border-none">
-              <div className="icon-input">
-                <BiSearchAlt className="text-black w-6 h-6" />
-                <input
-                  type="text"
-                  className="  outline-none rounded p-2 text-black"
-                  placeholder="Search"
-                  //value={}
-                  //onChange={} //you should use debounce
-                />
-              </div>
+              
 
               <div className="dropdown dropdown-end ">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
