@@ -80,18 +80,18 @@ const Navbar = ({
                 </label>
                 <ul
                   tabIndex={0}
-                  className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-200 text-secondary rounded-box w-52"
+                  className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-300 text-secondary rounded-box w-52"
                 >
                   <li>
                     <a className="justify-between">
                       Profile
-                      <span className="badge bg-secondary text-white">New</span>
+                      <span className="badge">New</span>
                     </a>
                   </li>
                   <li>
                     <a>Settings</a>
                   </li>
-                  <li>
+                  <li onClick={logoutHandler}>
                     <a>Logout</a>
                   </li>
                 </ul>

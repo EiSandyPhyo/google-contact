@@ -39,6 +39,11 @@ input[type="file"]{
   border-color: white;
 }
 
+ .bgcolor tr {
+    /* color: aliceblue !important; */
+    background-color: #E3E8F4 !important;
+}
+
 .dataResult {
   
   margin-top: 5px;

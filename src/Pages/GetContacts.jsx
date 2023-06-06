@@ -9,16 +9,28 @@ import { BsStar } from "react-icons/bs";
 import { BsFillStarFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 
-const GetContacts = ({contact, menuOpen}) => {
+const GetContacts = ({contact, menuOpen, checked, setChecked, selected, setSelected}) => {
 
   const [star, setStar] = useState(true);
 
+  const checkboxHandler = (e,c) => {
+    if (e.target.checked) {
+      setChecked([...checked, c]);
+      console.log(e.target)
+    } else {
+      setChecked(checked.filter((item) => item !== c));
+    }
+  };
+
+  if (checked.length== 0){
+     setSelected(true);
+  } 
+  console.log(checked)
     let address = contact?.address?.address;
   //console.log(contact.address.city + " " + contact.address.street);
   
   return (
     <>
-      
     <tr className="hover group relative">
       <td>
         <div className="flex items-center space-x-3">
@@ -31,9 +43,10 @@ const GetContacts = ({contact, menuOpen}) => {
             </div>
           </div>
           {/* checkbox visible */}
-          <div className="invisible group-hover:visible absolute ">
-            <label>
-              <input type="checkbox" className="checkbox " />
+          <div className=" absolute "> {/* invisible group-hover:visible */}
+          <label onClick={()=> setSelected(false)}>
+              <input type="checkbox" className="checkbox rounded-sm" checked={checked.includes(contact?.firstName+" "+contact?.lastName) }
+                  onChange={(e) => checkboxHandler(e,contact?.firstName+" "+contact?.lastName)} /> 
             </label>
           </div>
           <div>
@@ -45,6 +58,7 @@ const GetContacts = ({contact, menuOpen}) => {
           </div>
         </div>
       </td>
+      
       <td className="w-1/5 max-[574px]:hidden max-[1003px]:w-1/3">
         {contact?.email}
       </td>
@@ -93,7 +107,8 @@ const GetContacts = ({contact, menuOpen}) => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 bg-base-100 rounded-box w-52 shadow-3xl dropdown-content-bg"
+                className=" space-y-1 mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-200 text-secondary rounded-box w-52"
+                /* dropdown-content menu p-2 bg-base-100 rounded-box w-52 shadow-3xl dropdown-content-bg */
               >
                 <li>
                   <a>
