@@ -85,8 +85,8 @@ const Contact = () => {
     
     <Sidebar>
         <div className=" flex">
-          <div className=" w-6/7 md:w-full">
-            <table className={`${menuOpen ? "table w-3/3" : "table w-full"}`}>
+          <div className=" w-6/7">
+            <table className={`${menuOpen ? "table w-2/3" : "table w-full"}`}>
               {/* head */}
               <thead>
                 {selected ? (
@@ -113,25 +113,25 @@ const Contact = () => {
                           className="tooltip tooltip-bottom lowercase cursor-pointer"
                           data-tip="print"
                         >
-                          <HiPrinter className='text-lg max-[574px]:text-[16px]' />
+                          <HiPrinter size={20} />
                         </div>
                         <div
                           className="tooltip tooltip-bottom lowercase cursor-pointer"
                           data-tip="import"
                         >
-                          <CiImport className='text-lg max-[574px]:text-[16px]' />
+                          <CiImport size={20} />
                         </div>
                         <div
                           className="tooltip tooltip-bottom lowercase cursor-pointer"
                           data-tip="export"
                         >
-                          <CiExport className='text-lg max-[574px]:text-[16px]' />
+                          <CiExport size={20} />
                         </div>
                         <div
                           className="tooltip tooltip-bottom capitalize"
                           data-tip="list settings"
                         >
-                          <CiMenuKebab className='text-lg max-[574px]:text-[16px]' />
+                          <CiMenuKebab size={20} />
                         </div>
                       </div>
                     </th>
@@ -144,7 +144,7 @@ const Contact = () => {
                         className=" text-[30px] cursor-pointer"
                         onClick={() => setChecked([])}
                       />
-                      <span className=" capitalize text-[16px] ml-3 max-[574px]:text-[13px]">
+                      <span className=" capitalize text-[16px] ml-3">
                         {checked.length} selected
                       </span>
                     </div>
@@ -164,14 +164,14 @@ const Contact = () => {
                         className="tooltip tooltip-bottom lowercase"
                         data-tip="label"
                       >
-                        <BiTag className='text-lg max-[574px]:text-[16px] rotate-180' />
+                        <BiTag size={20} className=" rotate-180" />
                       </div>
                       <div
                         className="tooltip tooltip-bottom lowercase cursor-pointer"
                         data-tip="mail"
                       >
                         <Link to={`https://mail.google.com`}>
-                        <BiEnvelope className='text-lg max-[574px]:text-[16px]' />
+                        <BiEnvelope size={20} />
                         </Link>
                       </div>
 
@@ -181,7 +181,7 @@ const Contact = () => {
                             className=" tooltip tooltip-bottom capitalize"
                             data-tip="more actions "
                           >
-                            <CiMenuKebab className='text-lg max-[574px]:text-[16px]' />
+                            <CiMenuKebab size={20} />
                           </div>
                         </label>
                         <ul
@@ -248,8 +248,16 @@ const Contact = () => {
               )}
             </table>
           </div>
-
-          <div className= {menuOpen ? 'w-2/4 h-14 max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block mt-3 ml-2' : "w-1/7 h-14  max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block mt-3 ml-2"}>
+          <div className="w-1/7 h-14  max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block">
+            <div
+              className={
+                menuOpen
+                  ? " w-7 inline-block"
+                  : " w-7 "
+                  /* ? "absolute w-7 top-[0.9rem] right-[478px] inline-block"
+                  : "absolute w-7 top-[0.9rem] right-[-15px]" */
+              }
+            >
               <div
                 className="tooltip tooltip-bottom capitalize cursor-pointer text-xs"
                 data-tip={menuOpen ? "hide sidebar" : "show sidebar"}
@@ -264,7 +272,9 @@ const Contact = () => {
                   />
                 </button>
               </div>
-              <div className=" w-96 mt-[-2.5rem] ml-auto"> {/*mt-[-3rem] absolute top-[-3rem] left-[70px] */}
+              <div className="relative">
+              
+              <div className=" w-96 absolute top-[-3rem] left-[70px]">
                 {menuOpen ? (
                   <div class="card bg-base-100 shadow-3xl">
                     <div class="card-body">
@@ -324,6 +334,8 @@ const Contact = () => {
                                 </div>
                               </div>
 
+                          
+                             
                         </li>
                           );
                         })}
@@ -337,6 +349,9 @@ const Contact = () => {
                   ""
                 )}
               </div>
+              </div>
+  
+          </div>
         </div>
       </div>
           <div className="flex flex-col justify-center items-center mt-10">

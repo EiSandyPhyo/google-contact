@@ -49,10 +49,10 @@ const Search = () => {
         />
         <div className="">
             {filterData?.length===0 ?(
-                <BiSearchAlt className=" text-black w-6 h-6" />
+                <BiSearchAlt className=" text-black w-6 h-6 cursor-pointer" />
             ):(
                 <p className=" text-black" onClick={clearInput}>
-                    <RxCross2/>
+                    <RxCross2 className="cursor-pointer"/>
                 </p>
             )
         }

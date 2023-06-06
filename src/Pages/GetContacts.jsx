@@ -51,7 +51,7 @@ const GetContacts = ({contact, menuOpen, checked, setChecked, selected, setSelec
           </div>
           <div>
             <Link to={`/detail/${contact?.id}`} state={contact} >
-            <div className="font-semibold capitalize w-1/5 max-[1003px]:w-1/3">
+            <div className="font-semibold capitalize w-1/5 max-[1003px]:w-1/3 md:text-sm max-[574px]:text-sm">
               {contact?.firstName+" "+contact?.lastName}
             </div>
             </Link>
@@ -59,18 +59,18 @@ const GetContacts = ({contact, menuOpen, checked, setChecked, selected, setSelec
         </div>
       </td>
       
-      <td className="w-1/5 max-[574px]:hidden max-[1003px]:w-1/3">
+      <td className="w-1/5 max-[574px]:hidden max-[1003px]:w-1/3 md:text-sm">
         {contact?.email}
       </td>
-      <td className="w-1/5 max-[574px]:hidden max-[1003px]:hidden">
+      <td className="w-1/5 max-[574px]:hidden max-[1003px]:hidden md:text-sm">
         {contact?.phone}
       </td>
       <td className={
                     menuOpen
-                      ? "hidden"
-                      : "w-1/5 max-[574px]:hidden max-[1003px]:hidden"
+                      ? "hidden  md:text-sm"
+                      : "w-1/5 max-[574px]:hidden max-[1003px]:hidden md:text-sm"
                   }>
-        {/* {address} */} {contact?.company?.title + " , " + contact?.company.name}
+        {/* {address} */} {contact?.company?.title}
       </td>
       
       <td className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">
@@ -81,7 +81,7 @@ const GetContacts = ({contact, menuOpen, checked, setChecked, selected, setSelec
               data-tip="star contact"
             >
               <button onClick={()=>setStar(!star)}>
-                {star ? <BsStar size={20}/> : <BsFillStarFill color='bg-primary' size={20}/> }
+                {star ? <BsStar className='text-lg max-[574px]:text-[16px]'/> : <BsFillStarFill color='bg-primary' className='text-lg max-[574px]:text-[16px]'/> }
               </button>
             </div>
           </button>
@@ -91,7 +91,7 @@ const GetContacts = ({contact, menuOpen, checked, setChecked, selected, setSelec
               data-tip="edit contact"
             >
               <Link to={`/edit/${contact?.id}`} state={contact}>
-              <MdOutlineEdit size={20} />
+              <MdOutlineEdit className='text-lg max-[574px]:text-[16px]' />
               </Link>
             </div>
           </button>
@@ -102,7 +102,7 @@ const GetContacts = ({contact, menuOpen, checked, setChecked, selected, setSelec
                   className=" tooltip tooltip-bottom capitalize"
                   data-tip="more actions "
                 >
-                  <CiMenuKebab size={20} />
+                  <CiMenuKebab className='text-lg max-[574px]:text-[16px]' />
                 </div>
               </label>
               <ul
