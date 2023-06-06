@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { RiLoginBoxFill } from "react-icons/ri";
-// import './Register.css'
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/api/authApi";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ import { addUser } from "../redux/services/authSlice";
 const Login = () => {
   const [username, setUserName] = useState("atuny0");
   const [password, setPassword] = useState("9uQFF1Lh");
+  //const [btnNotShow, setBtnNotShow] = useState(true);
 
   const nav = useNavigate();
 
@@ -23,11 +24,19 @@ const Login = () => {
       console.log(user);
       const { data } = await login(user);
       console.log(data.token);
-      console.log(data)
-      dispatch(addUser({ user: data?.firstName, token: data?.token,image:data?.image }));
-      nav("/");
+      console.log(data);
+      dispatch(
+        addUser({
+          user: data?.firstName,
+          token: data?.token,
+          image: data?.image,
+        })
+      );
+      if (data.token) {
+        nav("/");
+      }
     } catch (error) {
-      console.log(error);
+      toast.error("Username or password is incorrect. Please Try again.");
     }
   };
 
@@ -223,6 +232,26 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#1f3738",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
     </div>
   );
 };
