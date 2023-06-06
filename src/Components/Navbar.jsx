@@ -5,6 +5,12 @@ import { GoPerson } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useLogoutMutation } from "../redux/api/authApi";
+import { removeUser } from "../redux/services/authSlice";
+
 const Navbar = ({
   AppBar,
   open,
@@ -13,6 +19,20 @@ const Navbar = ({
   toggleDrawer,
 }) => {
   const [showInput, setShowInput] = useState(false);
+  const user = JSON.parse(Cookies.get("user"));
+  const token = Cookies.get("token");
+  console.log(token);
+  const [logout] = useLogoutMutation();
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  const logoutHandler = async () => {
+    const { data } = await logout(token);
+    console.log(data);
+    dispatch(removeUser());
+    nav("/login");
+    console.log(data);
+  };
 
   return (
     <div>
@@ -80,7 +100,8 @@ const Navbar = ({
                   <li>
                     <a>Settings</a>
                   </li>
-                  <li>
+
+                  <li onClick={logoutHandler}>
                     <a>Logout</a>
                   </li>
                 </ul>
