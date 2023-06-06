@@ -30,3 +30,15 @@ input[type="file"]{
   align-items: center;
   font-size: 50px;
 }
+
+.myBtnDisable{
+  background-color: rgb(203 213 225);
+  color: rgb(148 163 184);
+  border-color: white;
+}
+
+.myBtnDisable:hover{
+  background-color: rgb(203 213 225);
+  color: rgb(148 163 184);
+  border-color: white;
+}

@@ -6,7 +6,6 @@ const CreateContact = () => {
   return (
     <Sidebar>
       <div className=" container">
-      <CreateHead />
       <CreateForm />
     </div>
     </Sidebar>
