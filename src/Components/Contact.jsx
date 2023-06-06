@@ -4,18 +4,30 @@ import { CiImport, CiExport, CiMenuKebab } from "react-icons/ci";
 import { MdOutlineMenuOpen, MdOutlineInfo, MdCake } from "react-icons/md";
 import GetContacts from "../Pages/GetContacts";
 import Sidebar from "./Sidebar";
+import { useGetContactQuery } from "../redux/api/contactApi";
+import { Loader } from "@mantine/core";
+import Pagination from "@mui/material/Pagination";
 
 const Contact = () => {
+  const { data, isLoading } = useGetContactQuery();
   const [contacts, setContacts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(4);
+  const [pageSize] = useState(10);
 
-  const lastPage = currentPage * pageSize;
-  const firstPage = lastPage - pageSize;
-  const currentPages = contacts.slice(firstPage, lastPage);
+  useEffect(() => {
+    if (data !== undefined && (data?.users).length !== 0) {
+      setContacts(data?.users);
+    }
+  });
+
+  const lastPage = currentPage * pageSize; // 10 = 1*10
+  const firstPage = lastPage - pageSize; // 0 = 10-10
+
+  const currentPages = contacts.slice(firstPage, lastPage); // =contacts[](0,10)
+  console.log(currentPages); //10
   const noOfPage = Math.ceil(contacts.length / pageSize);
-  console.log(noOfPage);
+  console.log(noOfPage); //30
   const numbers = [...Array(noOfPage + 1).keys()].slice(1);
   console.log(numbers);
 
@@ -24,16 +36,6 @@ const Contact = () => {
     console.log(e, p);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const api = await fetch(`https://fakestoreapi.com/users`);
-    const data = await api.json();
-    setContacts(data);
-    // console.log(data);
-  };
   useEffect(() => {
     const handleWindowResize = () => {
       setMenuOpen(false);
@@ -76,7 +78,7 @@ const Contact = () => {
                       : "capitalize w-1/5 max-[574px]:hidden max-[1003px]:hidden"
                   }
                 >
-                  address
+                  {/* address */} Job title & company
                 </th>
                 <th className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">
                   <div className="flex items-center space-x-5 justify-end">
@@ -115,74 +117,76 @@ const Contact = () => {
                   : `contacts (${contacts.length})`}
               </p>
             </div>
-            <tbody>
-              {currentPages.map((contact) => {
-                return (
-                  <GetContacts
-                    key={contact?.id}
-                    contact={contact}
-                    menuOpen={menuOpen}
-                    setMenuOpen={setMenuOpen}
-                  />
-                );
-              })}
-            </tbody>
-          )}
-        </table>
-      </div>
-      <div className="w-1/7 h-14 relative max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block">
-        <div
-          className={
-            menuOpen
-              ? "absolute w-16 top-[0.9rem] right-[400px] inline-block"
-              : "absolute w-16 top-[0.9rem] right-0"
-          }
-        >
+
+            {(data?.users).length !== 0 && (
+              <tbody>
+                {currentPages?.map((contact) => {
+                  return (
+                    <GetContacts
+                      key={contact?.id}
+                      contact={contact}
+                      menuOpen={menuOpen}
+                      setMenuOpen={setMenuOpen}
+                    />
+                  );
+                })}
+              </tbody>
+            )}
+          </table>
+        </div>
+        <div className="w-1/7 h-14 relative max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block">
           <div
-            className="tooltip tooltip-bottom capitalize cursor-pointer text-xs"
-            data-tip={menuOpen ? "hide sidebar" : "show sidebar"}
+            className={
+              menuOpen
+                ? "absolute w-16 top-[0.9rem] right-[400px] inline-block"
+                : "absolute w-16 top-[0.9rem] right-0"
+            }
           >
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="btn btn-ghost btn-xs "
+            <div
+              className="tooltip tooltip-bottom capitalize cursor-pointer text-xs"
+              data-tip={menuOpen ? "hide sidebar" : "show sidebar"}
             >
-              <MdOutlineMenuOpen
-                size={23}
-                className={menuOpen ? " rotate-180" : ""}
-              />
-            </button>
-          </div>
-          <div className=" w-96 absolute top-[-0.9rem] left-[50px]">
-            {menuOpen ? (
-              <div class="card w-96 bg-base-100 shadow-3xl">
-                <div class="card-body">
-                  <h2 class="card-title">Add birthdays</h2>
-                  <div className="flex flex-wrap justify-between items-start">
-                    <div className="w-4/5">
-                      <p className="text-xs ">
-                        Save your contacts' birthdays to see them on your
-                        birthday calendar and get helpful cues here and across
-                        Google services
-                      </p>
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="btn btn-ghost btn-xs "
+              >
+                <MdOutlineMenuOpen
+                  size={23}
+                  className={menuOpen ? " rotate-180" : ""}
+                />
+              </button>
+            </div>
+            <div className=" w-96 absolute top-[-0.9rem] left-[50px]">
+              {menuOpen ? (
+                <div class="card w-96 bg-base-100 shadow-3xl">
+                  <div class="card-body">
+                    <h2 class="card-title">Add birthdays</h2>
+                    <div className="flex flex-wrap justify-between items-start">
+                      <div className="w-4/5">
+                        <p className="text-xs ">
+                          Save your contacts' birthdays to see them on your
+                          birthday calendar and get helpful cues here and across
+                          Google services
+                        </p>
+                      </div>
+                      <div className="w-1/5">
+                        <MdOutlineInfo
+                          size={20}
+                          className="cursor-pointer ml-auto"
+                        />
+                      </div>
                     </div>
-                    <div className="w-1/5">
-                      <MdOutlineInfo
-                        size={20}
-                        className="cursor-pointer ml-auto"
-                      />
-                    </div>
-                  </div>
 
                     <div className=" flex flex-col gap-3 ">
                       {currentPages.map((contact) => {
                         return (
                           <>
-                            <div className="flex flex-wrap justify-between items-center hover:bg-[#0206176c] p-1 cursor-pointer">
+                            <div className="flex flex-wrap justify-between items-center hover:bg-[#F2F7FF] p-1 cursor-pointer">
                               <div className="flex flex-wrap gap-3  cursor-pointer">
                                 <div className="avatar">
                                   <div className="mask mask-squircle w-12 h-12">
                                     <img
-                                      src={`https://ui-avatars.com/api/?name=${contact.username[0]}&background=random&font-size=0.5`}
+                                      src={`https://ui-avatars.com/api/?name=${contact?.username[0]}&background=random&font-size=0.5`}
                                       alt="Avatar Tailwind CSS Component"
                                     />
                                   </div>
@@ -190,13 +194,13 @@ const Contact = () => {
                                 <div className="flex flex-col justify-center">
                                   <div className="font-semibold capitalize">
                                     <p className="text-sm">
-                                      {contact.name.firstname +
+                                      {contact?.firstName +
                                         " " +
-                                        contact.name.lastname}
+                                        contact?.lastName}
                                     </p>
                                   </div>
                                   <div className="">
-                                    <p className="text-xs">{contact.email}</p>
+                                    <p className="text-xs">{contact?.email}</p>
                                   </div>
                                 </div>
                               </div>
@@ -215,33 +219,19 @@ const Contact = () => {
               )}
             </div>
           </div>
-        </div>  
-      </div>
-      {contacts ? (
-        <div className="flex flex-wrap justify-center mt-10">
-          <div className="join">
-            {numbers.map((no, i) => {
-              return (
-                <button
-                  onClick={() => currentPageHandle(no)}
-                  className={` btn join-item  btn-primary ${
-                    currentPage === no ? "btn-active" : ""
-                  }`}
-                  key={i}
-                >
-                  {no}
-                </button>
-              );
-            })}
-          </div>
         </div>
-      ) : (
-        <div className="loading">Loading...</div>
-      )}
-    </div>
-  </Sidebar>
+      </div>
+      <div className="flex flex-col justify-center items-center mt-10">
+        {numbers.length !== 0 && (
+          <Pagination
+            color="primary"
+            onChange={handleChangePage}
+            count={numbers.length}
+          />
+        )}
+      </div>
+    </Sidebar>
   );
 };
 
 export default Contact;
-
