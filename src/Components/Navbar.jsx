@@ -5,6 +5,14 @@ import { GoPerson } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 
+
+
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useLogoutMutation } from "../redux/api/authApi";
+import { removeUser } from "../redux/services/authSlice";
+
 const Navbar = ({
   AppBar,
   open,
@@ -13,6 +21,22 @@ const Navbar = ({
   toggleDrawer,
 }) => {
   const [showInput, setShowInput] = useState(false);
+
+  
+const user=JSON.parse(Cookies.get("user"));
+const token=Cookies.get("token");
+  console.log(token);
+  const [logout] = useLogoutMutation();
+  const nav = useNavigate();
+  const dispatch=useDispatch();
+
+
+  const logoutHandler = async () => {
+    const {data} = await logout(token);
+    dispatch(removeUser());
+          nav('/login');
+    console.log(data);
+  };
 
   return (
     <div>
@@ -61,6 +85,17 @@ const Navbar = ({
             <BiSearchAlt className="text-black w-6 h-6" />
             </button>
             <div className="flex-none gap-2 border-none">
+              <div className="icon-input">
+                <BiSearchAlt className="text-black w-6 h-6" />
+                <input
+                  type="text"
+                  className="  outline-none rounded p-2 text-black"
+                  placeholder="Search"
+                  //value={}
+                  //onChange={} //you should use debounce
+                />
+              </div>
+
               <div className="dropdown dropdown-end ">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
@@ -80,7 +115,7 @@ const Navbar = ({
                   <li>
                     <a>Settings</a>
                   </li>
-                  <li>
+                  <li onClick={logoutHandler}>
                     <a>Logout</a>
                   </li>
                 </ul>

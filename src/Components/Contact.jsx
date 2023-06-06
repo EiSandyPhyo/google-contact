@@ -4,39 +4,36 @@ import { CiImport, CiExport, CiMenuKebab } from "react-icons/ci";
 import { MdOutlineMenuOpen, MdOutlineInfo, MdCake } from "react-icons/md";
 import GetContacts from "../Pages/GetContacts";
 import Sidebar from "./Sidebar";
-import { useGetContactsQuery } from "../api/contactApi";
 
 const Contact = () => {
-  const {data,isLoading}=useGetContactsQuery();
-  console.log(data);
-  console.log(data?.users);
-  //const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(4);
 
-  // const lastPage = currentPage * pageSize;
-  // const firstPage = lastPage - pageSize;
-  // const currentPages = data?.users.slice(firstPage, lastPage);
-  // const noOfPage = Math.ceil(data?.users.length / pageSize);
-  // console.log(noOfPage);
-  // const numbers = [...Array(noOfPage + 1).keys()].slice(1);
-  // console.log(numbers);
-  console.log(data?.users.length);
+  const lastPage = currentPage * pageSize;
+  const firstPage = lastPage - pageSize;
+  const currentPages = contacts.slice(firstPage, lastPage);
+  const noOfPage = Math.ceil(contacts.length / pageSize);
+  console.log(noOfPage);
+  const numbers = [...Array(noOfPage + 1).keys()].slice(1);
+  console.log(numbers);
 
-  const currentPageHandle = (id) => {
-    setCurrentPage(id);
-    // console.log(id);
+  const handleChangePage = (e, p) => {
+    setCurrentPage(p);
+    console.log(e, p);
   };
 
- 
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  // const fetchData = async () => {
-  //   const api = await fetch(`https://fakestoreapi.com/users`);
-  //   const data = await api.json();
-  //   setContacts(data);
-  //   // console.log(data);
-  // };
+  const fetchData = async () => {
+    const api = await fetch(`https://fakestoreapi.com/users`);
+    const data = await api.json();
+    setContacts(data);
+    // console.log(data);
+  };
   useEffect(() => {
     const handleWindowResize = () => {
       setMenuOpen(false);
@@ -48,6 +45,15 @@ const Contact = () => {
     };
   });
   console.log("menuOpen - " + menuOpen);
+
+  if (isLoading) {
+    return (
+      <div className=" flex flex-wrap justify-center h-screen items-center">
+        <Loader size="md" />;
+      </div>
+    );
+  }
+
   return (
     <Sidebar>
       <div className=" flex">
@@ -104,13 +110,13 @@ const Contact = () => {
             </thead>
             <div className="my-4">
               <p className=" uppercase text-xs text-[#91979b] ml-4 tracking-widest">
-                {data?.user?.length === 1
-                  ? `contact (${data?.uses.length})`
-                  : `contacts (${data?.users.length})`}
+                {contacts.length === 1
+                  ? `contact (${contacts.length})`
+                  : `contacts (${contacts.length})`}
               </p>
             </div>
             <tbody>
-              {data?.users.map((contact) => {
+              {currentPages.map((contact) => {
                 return (
                   <GetContacts
                     key={contact?.id}
@@ -121,53 +127,54 @@ const Contact = () => {
                 );
               })}
             </tbody>
-          </table>
-        </div>
-        <div className="w-1/7 h-14 relative max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block">
+          )}
+        </table>
+      </div>
+      <div className="w-1/7 h-14 relative max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block">
+        <div
+          className={
+            menuOpen
+              ? "absolute w-16 top-[0.9rem] right-[400px] inline-block"
+              : "absolute w-16 top-[0.9rem] right-0"
+          }
+        >
           <div
-            className={
-              menuOpen
-                ? "absolute w-16 top-[0.9rem] right-[400px] inline-block"
-                : "absolute w-16 top-[0.9rem] right-0"
-            }
+            className="tooltip tooltip-bottom capitalize cursor-pointer text-xs"
+            data-tip={menuOpen ? "hide sidebar" : "show sidebar"}
           >
-            <div
-              className="tooltip tooltip-bottom capitalize cursor-pointer text-xs"
-              data-tip={menuOpen ? "hide sidebar" : "show sidebar"}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="btn btn-ghost btn-xs "
             >
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="btn btn-ghost btn-xs "
-              >
-                <MdOutlineMenuOpen
-                  size={23}
-                  className={menuOpen ? " rotate-180" : ""}
-                />
-              </button>
-            </div>
-            <div className=" w-96 absolute top-[-0.9rem] left-[50px]">
-              {menuOpen ? (
-                <div class="card w-96 bg-base-100 shadow-3xl">
-                  <div class="card-body">
-                    <h2 class="card-title">Add birthdays</h2>
-                    <div className="flex flex-wrap justify-between items-start">
-                      <div className="w-4/5">
-                        <p className="text-xs ">
-                          Save your contacts' birthdays to see them on your
-                          birthday calendar and get helpful cues here and across
-                          Google services
-                        </p>
-                      </div>
-                      <div className="w-1/5">
-                        <MdOutlineInfo
-                          size={20}
-                          className="cursor-pointer ml-auto"
-                        />
-                      </div>
+              <MdOutlineMenuOpen
+                size={23}
+                className={menuOpen ? " rotate-180" : ""}
+              />
+            </button>
+          </div>
+          <div className=" w-96 absolute top-[-0.9rem] left-[50px]">
+            {menuOpen ? (
+              <div class="card w-96 bg-base-100 shadow-3xl">
+                <div class="card-body">
+                  <h2 class="card-title">Add birthdays</h2>
+                  <div className="flex flex-wrap justify-between items-start">
+                    <div className="w-4/5">
+                      <p className="text-xs ">
+                        Save your contacts' birthdays to see them on your
+                        birthday calendar and get helpful cues here and across
+                        Google services
+                      </p>
                     </div>
+                    <div className="w-1/5">
+                      <MdOutlineInfo
+                        size={20}
+                        className="cursor-pointer ml-auto"
+                      />
+                    </div>
+                  </div>
 
                     <div className=" flex flex-col gap-3 ">
-                      {/* {currentPages.map((contact) => {
+                      {currentPages.map((contact) => {
                         return (
                           <>
                             <div className="flex flex-wrap justify-between items-center hover:bg-[#0206176c] p-1 cursor-pointer">
@@ -199,7 +206,7 @@ const Contact = () => {
                             </div>
                           </>
                         );
-                      })} */}
+                      })}
                     </div>
                   </div>
                 </div>
@@ -210,10 +217,10 @@ const Contact = () => {
           </div>
         </div>  
       </div>
-      {data?.users ? (
+      {contacts ? (
         <div className="flex flex-wrap justify-center mt-10">
           <div className="join">
-            {/* {numbers.map((no, i) => {
+            {numbers.map((no, i) => {
               return (
                 <button
                   onClick={() => currentPageHandle(no)}
@@ -225,14 +232,16 @@ const Contact = () => {
                   {no}
                 </button>
               );
-            })} */}
+            })}
           </div>
         </div>
       ) : (
         <div className="loading">Loading...</div>
       )}
-    </Sidebar>
+    </div>
+  </Sidebar>
   );
 };
 
 export default Contact;
+

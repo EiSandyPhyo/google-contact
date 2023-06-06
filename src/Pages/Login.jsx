@@ -3,21 +3,29 @@ import React, { useState } from "react";
 import { RiLoginBoxFill } from "react-icons/ri";
 // import './Register.css'
 import { Link, useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../api/authApi";
+import { useLoginMutation } from "../redux/api/authApi";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/services/authSlice";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  //const [login] = useLoginMutation()
-  const [login] = useLoginMutation();
+  const [username, setUserName] = useState("atuny0");
+  const [password, setPassword] = useState("9uQFF1Lh");
+
   const nav = useNavigate();
+
+  const [login] = useLoginMutation();
+  const dispatch = useDispatch();
+
   const loginHandler = async (e) => {
     try {
       e.preventDefault();
-      const user = { email, password };
+      const user = { username, password };
+      console.log(user);
       const { data } = await login(user);
-      console.log(data);
-      if (data?.success) nav("/");
+      console.log(data.token);
+      console.log(data)
+      dispatch(addUser({ user: data?.firstName, token: data?.token,image:data?.image }));
+      nav("/");
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +40,7 @@ const Login = () => {
             data-name="Layer 1"
             className=" w-full h-3/4 px-10"
             viewBox="0 0 803 259.00001"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
           >
             <path
               d="M979.75635,552.5h-29.5127a4.57,4.57,0,0,0-3.49853,1.61737,6.999,6.999,0,1,0,1.80566,13.1731l2.44776,7.95416A4.6111,4.6111,0,0,0,955.40625,578.5h19.188a4.611,4.611,0,0,0,4.40722-3.25537l5.1626-16.77692A4.61179,4.61179,0,0,0,979.75635,552.5ZM945.5,566a5,5,0,0,1,0-10c.09131,0,.17627.0221.2666.02692a4.56344,4.56344,0,0,0,.06983,2.44079l2.11181,6.86475A4.9367,4.9367,0,0,1,945.5,566Z"
@@ -174,22 +182,16 @@ const Login = () => {
             </div>
             <div className="flex flex-col gap-4 ">
               <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
                 className="input  border-primary px-12 "
                 type="text"
-                name=""
-                id=""
-                placeholder="Your Email Address"
               />
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="input border-primary px-12 "
                 type="password"
-                name=""
-                id=""
-                placeholder="Enter Your Password"
               />
               {/* <a
               className="inline-block align-baseline font-bold text-sm text-black mt-3 hover:text-blue-800"
@@ -207,14 +209,13 @@ const Login = () => {
                   </p>
                 </Link>
               </div>
-            
 
-              <Link to={"/"}>
-                <button className="px-12 register rounded py-2 text-white bg-primary border-4 border-[#047AFF] hover:bg-white hover:text-primary mx-auto block mt-5 ">
-                  <span className=" font-semibold">Login Login</span>
-                  
-                </button>
-              </Link>
+              <button
+                className="px-12 register rounded py-2 text-white bg-primary border-4 border-[#047AFF] btn btn-primary mx-auto block mt-5 "
+                type="submit"
+              >
+                <span className=" font-semibold">Login</span>
+              </button>
               {/* <Link to={'/register'}>
             <button className='px-12 py-2 login rounded text-white bg-red-500 hover:bg-red-700'>Logout</button>
             </Link> */}

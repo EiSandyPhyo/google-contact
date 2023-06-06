@@ -6,11 +6,18 @@ import { BsTelephone } from "react-icons/bs";
 import { BiLocationPlus } from "react-icons/bi";
 import { FaBirthdayCake } from "react-icons/fa";
 import { BiNote } from "react-icons/bi";
+import CreateHead from '../Components/CreateHead'
+<CreateHead/>
 
 const CreateForm = () => {
   const [showM, setShowM] = useState(false);
+  const [firstname, setFirstName] = useState("");
+  const [phone, setPhone] = useState("");
+
   return (
    <div className="container">
+<CreateHead firstname={firstname} phone={phone} setFirstName={setFirstName} setPhone={setPhone}/>
+
      <div className=" md:mb-20 md:mt-[280px] mx-2 md:mx-20">
       <div className=" flex justify-center items-start gap-3">
         <div className=" p-5 text-xl">
@@ -18,6 +25,8 @@ const CreateForm = () => {
         </div>
         <div className="md:w-[700px]">
           <input
+          value={firstname}
+          onChange={(e) => setFirstName(e.target.value)}
             type="text"
             placeholder="First Name"
             className={`input w-full max-w-xs border-primary hover:border-[#047AFF] block mb-3`}
@@ -65,6 +74,8 @@ const CreateForm = () => {
         </div>
         <div className="md:w-[700px]">
           <input
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
             type="text"
             placeholder="Phone"
             className="input w-full max-w-xs border-primary block mb-3"
@@ -80,7 +91,12 @@ const CreateForm = () => {
           <div className="md:w-[700px]">
             <input
               type="text"
-              placeholder="Address"
+              placeholder="Street Address"
+              className="input w-full max-w-xs border-primary block mb-3"
+            />
+            <input
+              type="text"
+              placeholder="City"
               className="input w-full max-w-xs border-primary block mb-3"
             />
           </div>
