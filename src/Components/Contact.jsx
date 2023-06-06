@@ -191,17 +191,8 @@ const Contact = () => {
                                   />
                                 </div>
                               </div>
-                              <div className="flex flex-col justify-center">
-                                <div className="font-semibold capitalize">
-                                  <p className="text-sm">
-                                    {contact?.firstName +
-                                      " " +
-                                      contact?.lastName}
-                                  </p>
-                                </div>
-                                <div className="">
-                                  <p className="text-xs">{contact?.email}</p>
-                                </div>
+                              <div className="ml-auto">
+                                <MdCake />
                               </div>
                             </div>
                             <div className="ml-auto">
@@ -235,4 +226,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

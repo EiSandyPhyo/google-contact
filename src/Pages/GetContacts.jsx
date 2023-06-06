@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
+import Sidebar from '../Components/Sidebar'
 import { HiPrinter } from "react-icons/hi2";
 import { CiExport, CiMenuKebab } from "react-icons/ci";
 import { MdStarOutline, MdOutlineEdit } from "react-icons/md";
-import { BsStar } from "react-icons/bs";
-import { BsFillStarFill } from "react-icons/bs";
 import { LuFolderDown } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
@@ -65,10 +64,7 @@ const GetContacts = ({contact, menuOpen}) => {
               className=" tooltip tooltip-bottom capitalize"
               data-tip="star contact"
             >
-              <button onClick={()=>setStar(!star)}>
-                {star ? <BsStar size={20}/> : <BsFillStarFill color='bg-primary' size={20}/> }
-              </button>
-              
+              <MdStarOutline size={20} />
             </div>
           </button>
           <button className="h-full">
@@ -93,7 +89,7 @@ const GetContacts = ({contact, menuOpen}) => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 bg-base-100 rounded-box w-60 shadow-3xl dropdown-content-bg"
+                className="dropdown-content menu p-2 bg-base-100 rounded-box w-52 shadow-3xl dropdown-content-bg"
               >
                 <li>
                   <a>

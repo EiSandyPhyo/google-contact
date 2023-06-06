@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react'
 import { BiImageAdd } from "react-icons/bi";
 import { TfiPlus } from "react-icons/tfi";
 import toast, { Toaster } from "react-hot-toast";
 import {RxCross2} from "react-icons/rx"
 import { Link } from 'react-router-dom';
 
-const EditHead = ({ contactDetail }) => {
+
+const EditHead = ({contactDetail}) => {
   return (
     <>
     <div className=" flex justify-between align-top mt-3">
@@ -76,4 +77,4 @@ const EditHead = ({ contactDetail }) => {
   )
 }
 
-export default EditHead;
+export default EditHead
