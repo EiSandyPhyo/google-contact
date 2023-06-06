@@ -7,10 +7,6 @@
   font-family: 'Montserrat', sans-serif;
  }
 
-.icon-input{
-  @apply flex items-center border w-72 shadow-sm gap-4 px-3 py-1 rounded
-}
-  
 .register:hover{
   transition: 0.5s;
 }

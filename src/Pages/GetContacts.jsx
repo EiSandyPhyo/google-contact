@@ -24,7 +24,7 @@ const GetContacts = ({contact, menuOpen}) => {
           <div className="avatar group-hover:invisible">
             <div className="mask mask-squircle w-12 h-12">
               <img
-                src={`https://ui-avatars.com/api/?name=${contact?.username[0]}&background=random&font-size=0.5`}
+                src={contact?.image}
                 alt="Avatar Tailwind CSS Component"
               />
             </div>
