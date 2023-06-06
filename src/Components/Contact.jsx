@@ -4,12 +4,29 @@ import { CiImport, CiExport, CiMenuKebab } from "react-icons/ci";
 import { MdOutlineMenuOpen, MdOutlineInfo, MdCake } from "react-icons/md";
 import GetContacts from "../Pages/GetContacts";
 import Sidebar from "./Sidebar";
+//import Cookies from "js-cookie";
+//import { useGetContactQuery } from "../redux/api/contactApi";
 
 const Contact = () => {
+  /*
+  const { data, isLoading } = useGetContactQuery();
+  console.log("dc",data);
+*/
   const [contacts, setContacts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(4);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const api = await fetch(`https://dummyjson.com/users`);
+    const { users } = await api.json();
+    setContacts(users);
+  };
+  console.log("cf", contacts);
 
   const lastPage = currentPage * pageSize;
   const firstPage = lastPage - pageSize;
@@ -24,16 +41,6 @@ const Contact = () => {
     // console.log(id);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const api = await fetch(`https://fakestoreapi.com/users`);
-    const data = await api.json();
-    setContacts(data);
-    // console.log(data);
-  };
   useEffect(() => {
     const handleWindowResize = () => {
       setMenuOpen(false);
@@ -180,9 +187,7 @@ const Contact = () => {
                                 <div className="flex flex-col justify-center">
                                   <div className="font-semibold capitalize">
                                     <p className="text-sm">
-                                      {contact.name.firstname +
-                                        " " +
-                                        contact.name.lastname}
+                                      {contact.firstName+' '+lastName}
                                     </p>
                                   </div>
                                   <div className="">
@@ -205,7 +210,7 @@ const Contact = () => {
               )}
             </div>
           </div>
-        </div>  
+        </div>
       </div>
       {contacts ? (
         <div className="flex flex-wrap justify-center mt-10">

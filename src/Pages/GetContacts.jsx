@@ -38,7 +38,7 @@ const GetContacts = ({contact}) => {
           <div>
             <Link to={`/detail/${contact?.id}`} state={contact} >
             <div className="font-semibold capitalize w-1/5 max-[1003px]:w-1/3">
-              {contact?.name?.firstname+" "+contact?.name?.lastname}
+              {contact?.firstName+" "+contact?.lastName}
             </div>
             </Link>
           </div>
