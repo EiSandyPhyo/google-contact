@@ -6,28 +6,18 @@ import { BsTelephone } from "react-icons/bs";
 import { BiLocationPlus } from "react-icons/bi";
 import { FaBirthdayCake } from "react-icons/fa";
 import { BiNote } from "react-icons/bi";
+import CreateHead from '../Components/CreateHead'
+<CreateHead/>
 
 const CreateForm = () => {
   const [showM, setShowM] = useState(false);
   const [firstname, setFirstName] = useState("");
-
-  const saveHandler = async (e) => {
-    try {
-      e.preventDefault();
-      const user = { name, email, password, password_confirmation };
-      const {data} = await register(user);
-      console.log(data);
-      if(data?.success){
-
-        nav('/login');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [phone, setPhone] = useState("");
 
   return (
    <div className="container">
+<CreateHead firstname={firstname} phone={phone} setFirstName={setFirstName} setPhone={setPhone}/>
+
      <div className=" md:mb-20 md:mt-[280px] mx-2 md:mx-20">
       <div className=" flex justify-center items-start gap-3">
         <div className=" p-5 text-xl">
@@ -84,6 +74,8 @@ const CreateForm = () => {
         </div>
         <div className="md:w-[700px]">
           <input
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
             type="text"
             placeholder="Phone"
             className="input w-full max-w-xs border-primary block mb-3"
