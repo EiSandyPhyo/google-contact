@@ -38,3 +38,8 @@ input[type="file"]{
   color: rgb(148 163 184);
   border-color: white;
 }
+
+ .bgcolor tr {
+    /* color: aliceblue !important; */
+    background-color: #E3E8F4 !important;
+}
