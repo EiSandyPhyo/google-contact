@@ -8,6 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
 const GetContacts = ({contact,menuOpen}) => {
+  console.log(contact);
   //   let address =
   //   contact?.address?.city +
   //   " " +
@@ -51,9 +52,9 @@ const GetContacts = ({contact,menuOpen}) => {
         {contact?.phone}
       </td>
       <td className="w-1/5 max-[574px]:hidden max-[1003px]:hidden">
-        {contact?.address?.address+" "+contact?.address?.city}
+        {contact?.company?.title +" at "+contact?.company?.name}
       </td>
-      {/* single hover */}
+      
       <td className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">
         <div className="invisible group-hover:visible flex items-center space-x-5 justify-end">
           <button className="h-full">
