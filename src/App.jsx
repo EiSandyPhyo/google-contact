@@ -9,6 +9,7 @@ import Register from "./Pages/Register";
 import Contact from "./Components/Contact";
 import Detail from "./Pages/Detail";
 import Routeguard from "./components/Routeguard";
+import SearchDetail from "./Pages/SearchDetail";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
       <Route path="/create" element={<CreateContact />} />
       <Route path="/edit/:id" element={<EditContact />} />
       <Route path="/detail/:id" element={<Detail />} />
+      <Route path="/search/:id" element={<SearchDetail/>}/>
     </Routes>
   );
 };

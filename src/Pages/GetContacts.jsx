@@ -5,6 +5,8 @@ import { CiExport, CiMenuKebab } from "react-icons/ci";
 import { MdStarOutline, MdOutlineEdit } from "react-icons/md";
 import { LuFolderDown } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { BsStar } from "react-icons/bs";
+import { BsFillStarFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 
 const GetContacts = ({contact, menuOpen}) => {
@@ -56,7 +58,7 @@ const GetContacts = ({contact, menuOpen}) => {
                   }>
         {/* {address} */} {contact?.company?.title + " , " + contact?.company.name}
       </td>
-      {/* single hover */}
+      
       <td className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">
         <div className="invisible group-hover:visible flex items-center space-x-5 justify-end">
           <button className="h-full">
@@ -64,7 +66,9 @@ const GetContacts = ({contact, menuOpen}) => {
               className=" tooltip tooltip-bottom capitalize"
               data-tip="star contact"
             >
-              <MdStarOutline size={20} />
+              <button onClick={()=>setStar(!star)}>
+                {star ? <BsStar size={20}/> : <BsFillStarFill color='bg-primary' size={20}/> }
+              </button>
             </div>
           </button>
           <button className="h-full">

@@ -20,17 +20,18 @@ const DetailHead = ({ contactDetail }) => {
     <div className="relative">
       <div className=" border-b-4 p-10 md:flex justify-between items-end mx-5 mb-10 h-[460px] md:h-[250px]">
         <div className=" flex flex-col md:flex-row justify-start items-center gap-10 mt-16">
-          <span className="myLabel text-6xl text-white font-bold bg-primary capitalize ">
+          {/* <span className="myLabel text-6xl text-white font-bold bg-primary capitalize ">
             {contactDetail?.firstName[0]}
-          </span>
-          <p className=" capitalize text-3xl font-semibold">
+          </span> */}
+          <img src={contactDetail?.image} className="w-56 h-40" alt="" />
+          <p className=" capitalize text-3xl tracking-wider font-semibold">
             {contactDetail?.firstName +
               " " +
               contactDetail?.lastName}
           </p>
           <Link to={`/edit/${contactDetail?.id}`} state={contactDetail}>
 
-          <button className="w-[120px] h-[50px] md:w-[30px] md:h-[30px] p-2 border-2 border-zinc-300 rounded-full inline-block md:hidden ">
+          <button className=" w-[120px] h-[50px] md:w-[30px] md:h-[30px] p-2   border-2 border-zinc-300 rounded-full inline-block md:hidden ">
             <span className=" flex justify-center items-center text-2xl font-bold">
               <MdEdit />
               <span className="ml-2 block md:hidden"> Edit</span>

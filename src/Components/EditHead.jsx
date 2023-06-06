@@ -19,7 +19,7 @@ const EditHead = ({contactDetail}) => {
     <div className='mt-5 p-3  flex justify-center lg:justify-between items-center  '>
       <div className='flex gap-5 items-center'>
       <img src={contactDetail?.image} className=' w-56 h-40' alt="" />
-        <h1 className=' hidden lg:block  text-3xl tracking-wider'>{contactDetail?.firstName+" "+contactDetail?.lastName}</h1>
+        <h1 className=' hidden lg:block font-semibold text-3xl tracking-wider'>{contactDetail?.firstName+" "+contactDetail?.lastName}</h1>
       </div>
       <button className=' hidden lg:block btn btn-primary'>Save</button>
     </div>
