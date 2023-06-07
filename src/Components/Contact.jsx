@@ -75,7 +75,7 @@ const Contact = () => {
   if (isLoading) {
     return (
       <div className=" flex flex-wrap justify-center h-screen items-center">
-        <Loader size="md" />
+        <Loader size="md" />;
       </div>
     );
   }
