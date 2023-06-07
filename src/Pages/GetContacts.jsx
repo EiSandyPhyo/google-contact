@@ -25,7 +25,7 @@ const GetContacts = ({contact, menuOpen, checked, setChecked, selected, setSelec
   if (checked.length== 0){
      setSelected(true);
   } 
-  console.log(checked)
+  // console.log(checked)
     let address = contact?.address?.address;
   //console.log(contact.address.city + " " + contact.address.street);
   
