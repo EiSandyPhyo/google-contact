@@ -83,7 +83,7 @@ const GetContacts = (props) => {
               : "w-1/5 max-[574px]:hidden max-[1003px]:hidden md:text-sm"
           }
         >
-          {/* {address} */} {contact?.company?.title}
+          {/* {address} */} {contact?.company?.title + contact?.company?.nam}
         </td>
 
         <td className="w-1/5 max-[574px]:w-2/5 max-[1003px]:1/3">

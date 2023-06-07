@@ -42,6 +42,7 @@ const Contact = () => {
   useEffect(() => {
     if (data !== undefined && (data?.users).length !== 0) {
       setContacts(data?.users);
+      console.log(data?.users)
     }
   });
 
@@ -83,8 +84,8 @@ const Contact = () => {
     <>
       <Sidebar>
         <div className=" flex">
-          <div className=" w-6/7 md:w-full">
-            <table className={`${menuOpen ? "table w-3/3" : "table w-full"}`}>
+          <div className=" w-6/7">
+            <table className= "table "/* {`${menuOpen ? "table w-3/3" : "table w-full"}`} */>
               {/* head */}
               <thead>
                 {selected ? (
@@ -255,7 +256,7 @@ const Contact = () => {
             </table>
           </div>
 
-          <div
+          {/* <div
             className={
               menuOpen
                 ? "w-2/4 h-14 max-[574px]:hidden max-[1003px]:hidden lg:block 2xl:block mt-3 ml-2"
@@ -277,8 +278,6 @@ const Contact = () => {
               </button>
             </div>
             <div className=" w-96 mt-[-2.5rem] ml-auto">
-              {" "}
-              {/*mt-[-3rem] absolute top-[-3rem] left-[70px] */}
               {menuOpen ? (
                 <div class="card bg-base-100 shadow-3xl">
                   <div class="card-body">
@@ -316,7 +315,7 @@ const Contact = () => {
                                     <div className="mask mask-squircle w-12 h-12">
                                       <img
                                         src={contact?.image}
-                                        /* `https://ui-avatars.com/api/?name=${contact?.username[0]}&background=random&font-size=0.5` */
+                                        // `https://ui-avatars.com/api/?name=${contact?.username[0]}&background=random&font-size=0.5` 
                                         alt="Avatar Tailwind CSS Component"
                                       />
                                     </div>
@@ -351,7 +350,8 @@ const Contact = () => {
                 ""
               )}
             </div>
-          </div>
+          </div> */}
+
         </div>
         <div className="flex flex-col justify-center items-center mt-10">
           {numbers.length !== 0 && (
