@@ -42,7 +42,7 @@ const Contact = () => {
   useEffect(() => {
     if (data !== undefined && (data?.users).length !== 0) {
       setContacts(data?.users);
-      console.log(data?.users)
+      // console.log(data?.users);
     }
   });
 
