@@ -29,7 +29,8 @@ const Register = () => {
     setPasswordConfirmation(password_confirmation);
   }, [name,email,password,password_confirmation]);
 
-  const RegisterHandler = () => {
+  const RegisterHandler = (e) => {
+    e.preventDefault();
     if (btnNotShow) {
       toast.error(
         "Please fill the information and password should be more than 8 character. Try again."
@@ -243,7 +244,7 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="input  border-primary px-12 "
-                type="text"
+                type="password"
                 name=""
                 id=""
                 placeholder="Enter Your Password"
@@ -252,7 +253,7 @@ const Register = () => {
                 value={password_confirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 className="input  border-primary px-12 "
-                type="text"
+                type="password"
                 name=""
                 id=""
                 placeholder="Password Confirmation"
